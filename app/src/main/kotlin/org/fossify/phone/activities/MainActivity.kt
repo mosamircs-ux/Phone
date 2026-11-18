@@ -40,6 +40,7 @@ import org.fossify.phone.fragments.ContactsFragment
 import org.fossify.phone.fragments.FavoritesFragment
 import org.fossify.phone.fragments.MyViewPagerFragment
 import org.fossify.phone.fragments.RecentsFragment
+import org.fossify.phone.helpers.AdMobBannerHelper
 import org.fossify.phone.helpers.OPEN_DIAL_PAD_AT_LAUNCH
 import org.fossify.phone.helpers.RecentsHelper
 import org.fossify.phone.helpers.tabsList
@@ -52,6 +53,7 @@ class MainActivity : SimpleActivity() {
     override var isSearchBarEnabled = true
     
     private val binding by viewBinding(ActivityMainBinding::inflate)
+    private lateinit var adMobBannerHelper: AdMobBannerHelper
 
     private var launchedDialer = false
     private var storedShowTabs = 0
@@ -104,10 +106,16 @@ class MainActivity : SimpleActivity() {
 
         setupTabs()
         Contact.sorting = config.sorting
+
+        adMobBannerHelper = AdMobBannerHelper(this)
+        adMobBannerHelper.attachBanner(binding.adBannerContainer)
     }
 
     override fun onResume() {
         super.onResume()
+        if (::adMobBannerHelper.isInitialized) {
+            adMobBannerHelper.onResume()
+        }
         if (storedShowTabs != config.showTabs) {
             config.lastUsedViewPagerPage = 0
             System.exit(0)
@@ -151,6 +159,9 @@ class MainActivity : SimpleActivity() {
     }
 
     override fun onPause() {
+        if (::adMobBannerHelper.isInitialized) {
+            adMobBannerHelper.onPause()
+        }
         super.onPause()
         storedShowTabs = config.showTabs
         storedStartNameWithSurname = config.startNameWithSurname
@@ -189,6 +200,9 @@ class MainActivity : SimpleActivity() {
     }
 
     override fun onDestroy() {
+        if (::adMobBannerHelper.isInitialized) {
+            adMobBannerHelper.onDestroy()
+        }
         super.onDestroy()
         EventBus.getDefault().unregister(this)
     }
@@ -202,7 +216,7 @@ class MainActivity : SimpleActivity() {
             findItem(R.id.create_new_contact).isVisible = currentFragment == getContactsFragment()
             findItem(R.id.change_view_type).isVisible = currentFragment == getFavoritesFragment()
             findItem(R.id.column_count).isVisible = currentFragment == getFavoritesFragment() && config.viewType == VIEW_TYPE_GRID
-            findItem(R.id.more_apps_from_us).isVisible = resources.getBoolean(R.bool.is_google_play_build)
+            findItem(R.id.more_apps_from_us).isVisible = false
         }
     }
 
@@ -324,8 +338,12 @@ class MainActivity : SimpleActivity() {
             updateBottomTabItemColors(inactiveView, false, getDeselectedTabDrawableIds()[index])
         }
 
-        val bottomBarColor = getBottomNavigationBackgroundColor()
-        binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
+        if (androidx.core.graphics.ColorUtils.calculateLuminance(getProperBackgroundColor()) < 0.5) {
+            binding.mainTabsHolder.setBackgroundResource(R.drawable.pulse_bottom_dock_bg)
+        } else {
+            val bottomBarColor = getBottomNavigationBackgroundColor()
+            binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
+        }
     }
 
     private fun getInactiveTabIndexes(activeIndex: Int) = (0 until binding.mainTabsHolder.tabCount).filter { it != activeIndex }

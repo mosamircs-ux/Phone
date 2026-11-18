@@ -22,7 +22,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.fossify.commons.extensions.applyColorFilter
 import org.fossify.commons.extensions.beVisibleIf
-import org.fossify.commons.extensions.checkAppSideloading
 import org.fossify.commons.extensions.getColorStateList
 import org.fossify.commons.extensions.getColoredDrawableWithColor
 import org.fossify.commons.extensions.getContrastColor
@@ -102,10 +101,6 @@ class DialpadActivity : SimpleActivity() {
             setupMaterialScrollListener(binding.dialpadList, binding.dialpadAppbar)
         }
 
-        if (checkAppSideloading()) {
-            return
-        }
-
         binding.dialpadWrapper.apply {
             if (config.hideDialpadNumbers) {
                 dialpad1Holder.isVisible = false
@@ -137,8 +132,7 @@ class DialpadActivity : SimpleActivity() {
                 dialpadHashtagHolder
             ).forEach {
                 it.background =
-                    ResourcesCompat.getDrawable(resources, R.drawable.pill_background, theme)
-                it.background?.alpha = LOWER_ALPHA_INT
+                    ResourcesCompat.getDrawable(resources, R.drawable.pulse_dialpad_pill, theme)
             }
         }
 
@@ -223,6 +217,43 @@ class DialpadActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         updateTextColors(binding.dialpadHolder)
+        binding.dialpadInput.backgroundTintList = null
+        binding.dialpadInput.setBackgroundResource(R.drawable.pulse_dialpad_input_bg)
+        val digitColor = getColor(R.color.theme_dark_text_color)
+        val letterAccentColor = getColor(R.color.pulse_teal_bright)
+        binding.dialpadInput.setTextColor(digitColor)
+        binding.dialpadWrapper.apply {
+            arrayOf(
+                dialpad0,
+                dialpad1,
+                dialpad2,
+                dialpad3,
+                dialpad4,
+                dialpad5,
+                dialpad6,
+                dialpad7,
+                dialpad8,
+                dialpad9,
+                dialpadAsterisk,
+                dialpadHashtag,
+                dialpadPlusAlt
+            ).forEach {
+                it.setTextColor(digitColor)
+            }
+            arrayOf(
+                dialpad2Letters,
+                dialpad3Letters,
+                dialpad4Letters,
+                dialpad5Letters,
+                dialpad6Letters,
+                dialpad7Letters,
+                dialpad8Letters,
+                dialpad9Letters,
+                dialpadPlusLetters
+            ).forEach {
+                it.setTextColor(letterAccentColor)
+            }
+        }
         binding.dialpadClearChar.applyColorFilter(getProperTextColor())
         setupTopAppBar(binding.dialpadAppbar, NavigationIcon.Arrow)
     }

@@ -1,9 +1,30 @@
 package org.fossify.phone.activities
 
+import android.os.Bundle
 import org.fossify.commons.activities.BaseSimpleActivity
+import org.fossify.commons.extensions.baseConfig
 import org.fossify.phone.R
+import org.fossify.phone.extensions.config
 
 open class SimpleActivity : BaseSimpleActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        applyPulseDialDefaultThemeIfNeeded()
+        super.onCreate(savedInstanceState)
+    }
+
+    private fun applyPulseDialDefaultThemeIfNeeded() {
+        if (!config.isPulseThemeInitialized) {
+            baseConfig.isSystemThemeEnabled = false
+            baseConfig.isGlobalThemeEnabled = false
+            baseConfig.backgroundColor = getColor(R.color.pulse_bg_deep)
+            baseConfig.textColor = getColor(R.color.theme_dark_text_color)
+            baseConfig.primaryColor = getColor(R.color.pulse_teal)
+            baseConfig.accentColor = getColor(R.color.pulse_teal_bright)
+            baseConfig.appIconColor = getColor(org.fossify.commons.R.color.md_teal_700)
+            config.isPulseThemeInitialized = true
+        }
+    }
+
     override fun getAppIconIDs() = arrayListOf(
         R.mipmap.ic_launcher_red,
         R.mipmap.ic_launcher_pink,
@@ -28,5 +49,5 @@ open class SimpleActivity : BaseSimpleActivity() {
 
     override fun getAppLauncherName() = getString(R.string.app_launcher_name)
 
-    override fun getRepositoryName() = "Phone"
+    override fun getRepositoryName() = "PulseDial"
 }

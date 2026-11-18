@@ -19,12 +19,13 @@ const val DIALPAD_VIBRATION = "dialpad_vibration"
 const val DIALPAD_BEEPS = "dialpad_beeps"
 const val HIDE_DIALPAD_NUMBERS = "hide_dialpad_numbers"
 const val ALWAYS_SHOW_FULLSCREEN = "always_show_fullscreen"
+const val PULSE_THEME_INITIALIZED = "pulse_theme_initialized"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
 val tabsList = arrayListOf(TAB_CONTACTS, TAB_FAVORITES, TAB_CALL_HISTORY)
 
-private const val PATH = "org.fossify.phone.action."
+private const val PATH = "com.pulsedial.phone.action."
 const val ACCEPT_CALL = PATH + "ACCEPT_CALL"
 const val DECLINE_CALL = PATH + "DECLINE_CALL"
 

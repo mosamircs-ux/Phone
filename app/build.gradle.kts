@@ -24,7 +24,7 @@ fun hasSigningVars(): Boolean {
 
 base {
     val versionCode = project.property("VERSION_CODE").toString().toInt()
-    archivesName = "phone-$versionCode"
+    archivesName = "pulse-dial-$versionCode"
 }
 
 android {
@@ -66,10 +66,20 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
+            buildConfigField(
+                "String",
+                "ADMOB_BANNER_AD_UNIT_ID",
+                "\"ca-app-pub-3940256099942544/9214589741\""
+            )
         }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            buildConfigField(
+                "String",
+                "ADMOB_BANNER_AD_UNIT_ID",
+                "\"ca-app-pub-4969792934066333/3543669811\""
+            )
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -112,7 +122,7 @@ android {
         )
     }
 
-    namespace = project.property("APP_ID").toString()
+    namespace = "org.fossify.phone"
 
     lint {
         checkReleaseBuilds = false
@@ -144,5 +154,6 @@ dependencies {
     implementation(libs.eventbus)
     implementation(libs.libphonenumber)
     implementation(libs.geocoder)
+    implementation(libs.play.services.ads)
     detektPlugins(libs.compose.detekt)
 }

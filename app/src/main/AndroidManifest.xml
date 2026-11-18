@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -45,6 +49,11 @@
         android:label="@string/app_launcher_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme">
+
+        <!-- Google AdMob Application ID (Pulse Dial) -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4969792934066333~8524533756" />
 
         <activity
             android:name=".activities.SplashActivity"
@@ -197,7 +206,7 @@
             android:exported="false" />
 
         <activity-alias
-            android:name=".activities.SplashActivity.Red"
+            android:name="${applicationId}.activities.SplashActivity.Red"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_red"
@@ -211,7 +220,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Pink"
+            android:name="${applicationId}.activities.SplashActivity.Pink"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_pink"
@@ -225,7 +234,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Purple"
+            android:name="${applicationId}.activities.SplashActivity.Purple"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_purple"
@@ -239,7 +248,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Deep_purple"
+            android:name="${applicationId}.activities.SplashActivity.Deep_purple"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_deep_purple"
@@ -253,7 +262,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Indigo"
+            android:name="${applicationId}.activities.SplashActivity.Indigo"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_indigo"
@@ -267,7 +276,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Blue"
+            android:name="${applicationId}.activities.SplashActivity.Blue"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_blue"
@@ -281,7 +290,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Light_blue"
+            android:name="${applicationId}.activities.SplashActivity.Light_blue"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_light_blue"
@@ -295,7 +304,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Cyan"
+            android:name="${applicationId}.activities.SplashActivity.Cyan"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_cyan"
@@ -309,21 +318,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Teal"
-            android:enabled="false"
-            android:exported="true"
-            android:icon="@mipmap/ic_launcher_teal"
-            android:roundIcon="@mipmap/ic_launcher_teal"
-            android:targetActivity=".activities.SplashActivity">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity-alias>
-
-        <activity-alias
-            android:name=".activities.SplashActivity.Green"
+            android:name="${applicationId}.activities.SplashActivity.Teal"
             android:enabled="true"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
@@ -337,7 +332,21 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Light_green"
+            android:name="${applicationId}.activities.SplashActivity.Green"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher"
+            android:targetActivity=".activities.SplashActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name="${applicationId}.activities.SplashActivity.Light_green"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_light_green"
@@ -351,7 +360,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Lime"
+            android:name="${applicationId}.activities.SplashActivity.Lime"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_lime"
@@ -365,7 +374,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Yellow"
+            android:name="${applicationId}.activities.SplashActivity.Yellow"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_yellow"
@@ -379,7 +388,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Amber"
+            android:name="${applicationId}.activities.SplashActivity.Amber"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_amber"
@@ -393,7 +402,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Orange"
+            android:name="${applicationId}.activities.SplashActivity.Orange"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_orange"
@@ -406,7 +415,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Deep_orange"
+            android:name="${applicationId}.activities.SplashActivity.Deep_orange"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_deep_orange"
@@ -420,7 +429,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Brown"
+            android:name="${applicationId}.activities.SplashActivity.Brown"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_brown"
@@ -434,7 +443,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Blue_grey"
+            android:name="${applicationId}.activities.SplashActivity.Blue_grey"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_blue_grey"
@@ -448,7 +457,7 @@
         </activity-alias>
 
         <activity-alias
-            android:name=".activities.SplashActivity.Grey_black"
+            android:name="${applicationId}.activities.SplashActivity.Grey_black"
             android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_grey_black"

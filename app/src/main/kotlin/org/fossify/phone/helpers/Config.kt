@@ -135,4 +135,8 @@ class Config(context: Context) : BaseConfig(context) {
     var alwaysShowFullscreen: Boolean
         get() = prefs.getBoolean(ALWAYS_SHOW_FULLSCREEN, false)
         set(alwaysShowFullscreen) = prefs.edit().putBoolean(ALWAYS_SHOW_FULLSCREEN, alwaysShowFullscreen).apply()
+
+    var isPulseThemeInitialized: Boolean
+        get() = prefs.getBoolean(PULSE_THEME_INITIALIZED, false)
+        set(initialized) = prefs.edit().putBoolean(PULSE_THEME_INITIALIZED, initialized).apply()
 }

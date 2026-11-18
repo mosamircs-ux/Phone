@@ -22,7 +22,7 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/main_tabs_holder"
+            app:layout_constraintBottom_toTopOf="@+id/ad_banner_container"
             app:layout_constraintTop_toTopOf="parent" />
 
         <org.fossify.commons.views.MyFloatingActionButton
@@ -33,22 +33,41 @@
             android:layout_marginEnd="@dimen/bigger_margin"
             android:layout_marginBottom="@dimen/activity_margin"
             android:contentDescription="@string/dialpad"
-            android:elevation="@dimen/medium_margin"
+            android:elevation="8dp"
             android:padding="@dimen/activity_margin"
             android:src="@drawable/ic_dialpad_vector"
-            app:backgroundTint="@color/color_primary"
+            app:backgroundTint="@color/pulse_teal"
+            app:layout_constraintBottom_toTopOf="@+id/ad_banner_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/pulse_teal_glow" />
+
+        <FrameLayout
+            android:id="@+id/ad_banner_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/pulse_bottom_bar_bg"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/main_tabs_holder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:rippleColor="@color/pressed_item_foreground" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tabs_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/pulse_bottom_dock_bg"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:tabIndicator="@null"
-            app:tabMinWidth="150dp"
-            app:tabRippleColor="@null" />
+            app:tabIndicatorColor="@color/pulse_teal_bright"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorGravity="top"
+            app:tabIndicatorHeight="3dp"
+            app:tabMinWidth="120dp"
+            app:tabRippleColor="@color/pulse_teal_glow" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

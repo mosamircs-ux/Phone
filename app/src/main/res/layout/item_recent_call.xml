@@ -5,10 +5,17 @@
     android:id="@+id/item_recents_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/pulse_card_background"
     android:clickable="true"
     android:focusable="true"
-    android:paddingTop="@dimen/medium_margin"
-    android:paddingBottom="@dimen/medium_margin">
+    android:paddingStart="6dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="6dp"
+    android:paddingBottom="12dp">
 
     <ImageView
         android:id="@+id/item_recents_image"
